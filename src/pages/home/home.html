@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <button ion-button menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            N° llamada ID - {{myCallId}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Call ID:</ion-label>
+            <ion-input type="text" [(ngModel)]="calleeId"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button *ngIf="showCall" ion-button block (click)='MakeCall(calleeId)'>Llamar al cuidador</button>
+            </ion-col>
+            <ion-col *ngIf="showHangup" >
+                <button  ion-button block color="danger" (click)='HangUp()'>Colgar</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button *ngIf="showAnswer" ion-button block color="secondary" (click)='AnswerCall(incomingCallId)'>Answer</button>
+            </ion-col>
+            <ion-col>
+                <button *ngIf="showReject" ion-button block color="danger">Reject</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <p *ngIf="showStatus" [innerHtml]="status"></p>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemoteVideo">
+            <ion-col>
+                <p>Su camara</p>
+                <div id="remote" style="width:100%;"></div>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showMyVideo">
+            <ion-col>
+                <p>Mi camara</p>
+                <div id="mini"></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
